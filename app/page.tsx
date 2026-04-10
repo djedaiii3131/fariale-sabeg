@@ -206,7 +206,7 @@ export default function Home() {
                 { label: 'PRODUITS', section: 'produits' },
               ].map((item, i) => (
                 <motion.button key={i} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.1 + i * 0.1 }}
-                  onClick={() => { setActiveSection(item.section); setMenuOpen(false); }}
+                  onClick={() => { if (item.section === 'produits') { window.location.href = '/boutique'; } else { setActiveSection(item.section); } setMenuOpen(false); }}
                   className="text-[#F5EDE3] hover:text-[#C8A96E] transition tracking-[0.2em] text-2xl font-light"
                   style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   {item.label}
@@ -386,12 +386,6 @@ export default function Home() {
             </a>
           </motion.div>
         </div>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <span className="text-[#C8A96E]/50 text-xs tracking-[3px] uppercase">Découvrir</span>
-          <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-px h-10 bg-gradient-to-b from-[#C8A96E]/50 to-transparent" />
-        </motion.div>
       </section>
 
       {/* ═══ SECTION CINÉMATIQUE ═══ */}
@@ -417,18 +411,18 @@ export default function Home() {
               animate={{ y: [0, -30, 0], opacity: [0.1, 0.4, 0.1] }}
               transition={{ duration: 3 + i * 0.5, repeat: Infinity, delay: i * 0.3 }} />
           ))}
-          <p className="text-[#C8A96E]/50 text-xs tracking-[6px] uppercase mb-12">Le salon</p>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-light text-[#F5EDE3] leading-tight mb-16" style={{ fontFamily: "'Palatino Linotype', serif" }}>
-            <LetterByLetter text="L'art de révéler" /><br />
-            <span className="text-[#C8A96E] italic"><LetterByLetter text="ce que vous êtes" /></span>
-          </h2>
+         <h2 className="text-4xl md:text-6xl lg:text-7xl font-light text-[#F5EDE3] leading-tight mb-16" style={{ fontFamily: "'Palatino Linotype', serif" }}>
+  L'art de révéler <br />
+  <span className="text-[#C8A96E] italic">ce que vous êtes</span>
+</h2>
+         
           <div className="flex items-center justify-center gap-8 md:gap-16">
             {['COUPER', 'SUBLIMER', 'TRANSFORMER'].map((mot, i) => (
               <motion.div key={i} className="flex items-center gap-8 md:gap-16">
                 <motion.span
                   animate={{ opacity: [0.15, 1, 0.15], color: ['rgba(200,169,110,0.3)', '#C8A96E', 'rgba(200,169,110,0.3)'], textShadow: ['0 0 0px transparent', '0 0 30px rgba(200,169,110,0.6)', '0 0 0px transparent'] }}
                   transition={{ duration: 2, delay: i * 0.7, repeat: Infinity, repeatDelay: 1.5 }}
-                  className="text-sm md:text-base tracking-[6px] uppercase font-light"
+                   className="text-sm md:text-base tracking-[6px] uppercase font-light"
                   style={{ fontFamily: "'Palatino Linotype', serif" }}>
                   {mot}
                 </motion.span>
@@ -507,7 +501,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SECTION BAR ═══ */}
+            {/* ═══ L'UNIVERS ═══ */}
+      <section id="univers" className="relative min-h-screen bg-[#0D0B08] flex items-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="/salon-coiffure.jpg" alt="Salon" className="w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0D0B08] via-[#0D0B08]/80 to-transparent" />
+        </div>
+        <div className="relative z-10 max-w-6xl mx-auto px-8 py-32 grid md:grid-cols-2 gap-20 items-center">
+          <RevealSection>
+            <p className="text-[#C8A96E] text-xs tracking-[4px] uppercase mb-6">L'Univers Fariale</p>
+            <h2 className="text-5xl md:text-6xl font-light leading-tight mb-8 text-[#F5EDE3]" style={{ fontFamily: "'Palatino Linotype', serif" }}>
+              Un espace où<br /><em style={{ color: '#C8A96E', fontStyle: 'italic' }}>chaque détail</em><br />est pensé pour vous
+            </h2>
+            <p className="text-white/60 text-lg leading-relaxed mb-10 max-w-md">
+              Fariale Sabeg, c'est bien plus qu'un salon. C'est une expérience sensorielle unique — où l'art capillaire rencontre l'élégance d'un espace de vie.
+            </p>
+            <a href="https://www.planity.com/fariale-sabeg-59790-ronchin" target="_blank" rel="noreferrer"
+              className="inline-block px-10 py-3 border border-[#C8A96E] text-[#C8A96E] hover:bg-[#C8A96E] hover:text-black transition-all duration-300 text-xs tracking-[3px] uppercase">
+              Prendre Rendez-vous
+            </a>
+          </RevealSection>
+          <div className="flex flex-col gap-8">
+            {[
+              { num: '01', title: 'Expertise', desc: 'Des années de maîtrise capillaire au service de votre beauté unique.' },
+              { num: '02', title: 'Authenticité', desc: 'Une relation de confiance, une écoute sincère, un résultat qui vous ressemble.' },
+              { num: '03', title: 'Luxe discret', desc: 'Un cadre raffiné, une carte de boissons soignée, une expérience mémorable.' },
+            ].map((item, i) => (
+              <RevealSection key={i}>
+                <div className="flex gap-6 items-start border-b border-white/10 pb-8">
+                  <span className="text-[#C8A96E]/40 text-4xl font-light" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{item.num}</span>
+                  <div>
+                    <h3 className="text-white text-lg tracking-[2px] mb-2 uppercase">{item.title}</h3>
+                    <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              </RevealSection>
+            ))}
+          </div>
+        </div>
+      </section>{/* ═══ SECTION BAR ═══ */}
       <section className="relative bg-[#0A0608] overflow-hidden">
 
         {/* Ligne défilante haut */}
@@ -573,45 +605,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ L'UNIVERS ═══ */}
-      <section id="univers" className="relative min-h-screen bg-[#0D0B08] flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img src="/salon-coiffure.jpg" alt="Salon" className="w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0D0B08] via-[#0D0B08]/80 to-transparent" />
-        </div>
-        <div className="relative z-10 max-w-6xl mx-auto px-8 py-32 grid md:grid-cols-2 gap-20 items-center">
-          <RevealSection>
-            <p className="text-[#C8A96E] text-xs tracking-[4px] uppercase mb-6">L'Univers Fariale</p>
-            <h2 className="text-5xl md:text-6xl font-light leading-tight mb-8 text-[#F5EDE3]" style={{ fontFamily: "'Palatino Linotype', serif" }}>
-              Un espace où<br /><em style={{ color: '#C8A96E', fontStyle: 'italic' }}>chaque détail</em><br />est pensé pour vous
-            </h2>
-            <p className="text-white/60 text-lg leading-relaxed mb-10 max-w-md">
-              Fariale Sabeg, c'est bien plus qu'un salon. C'est une expérience sensorielle unique — où l'art capillaire rencontre l'élégance d'un espace de vie.
-            </p>
-            <a href="https://www.planity.com/fariale-sabeg-59790-ronchin" target="_blank" rel="noreferrer"
-              className="inline-block px-10 py-3 border border-[#C8A96E] text-[#C8A96E] hover:bg-[#C8A96E] hover:text-black transition-all duration-300 text-xs tracking-[3px] uppercase">
-              Prendre Rendez-vous
-            </a>
-          </RevealSection>
-          <div className="flex flex-col gap-8">
-            {[
-              { num: '01', title: 'Expertise', desc: 'Des années de maîtrise capillaire au service de votre beauté unique.' },
-              { num: '02', title: 'Authenticité', desc: 'Une relation de confiance, une écoute sincère, un résultat qui vous ressemble.' },
-              { num: '03', title: 'Luxe discret', desc: 'Un cadre raffiné, une carte de boissons soignée, une expérience mémorable.' },
-            ].map((item, i) => (
-              <RevealSection key={i}>
-                <div className="flex gap-6 items-start border-b border-white/10 pb-8">
-                  <span className="text-[#C8A96E]/40 text-4xl font-light" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{item.num}</span>
-                  <div>
-                    <h3 className="text-white text-lg tracking-[2px] mb-2 uppercase">{item.title}</h3>
-                    <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              </RevealSection>
-            ))}
-          </div>
-        </div>
-      </section>
+
       {/* === SECTION NOS PRODUITS === */}
 <section className="relative w-full h-[600px] overflow-hidden flex items-center justify-center">
   <img
@@ -641,55 +635,56 @@ export default function Home() {
   </div>
 </section>
 
-    {/* === CHIFFRES === */}
-<section className="bg-[#C8A96E]/10 border-y border-[#C8A96E]/20 py-24 px-8">
+   
+
+
+      {/* === NOTRE SALON === */}
+<div className="w-full h-px bg-[#C8A96E]/20" /><a href="/salon" className="block relative h-[70vh] overflow-hidden group cursor-pointer">
+  <motion.div
+    initial={{ scale: 1 }}
+    whileHover={{ scale: 1.05 }}
+    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    className="w-full h-full">
+    <img src="/FARIALEhair.jpeg" alt="Notre Salon" className="w-full h-full object-cover" />
+  </motion.div>
+  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition-all duration-500" />
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    className="absolute inset-0 flex flex-col items-center justify-center text-center">
+    <h2 className="text-white font-light text-6xl md:text-8xl mb-4"
+      style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+      Notre <span className="italic">Salon</span>
+    </h2>
+    <div className="w-12 h-px bg-[#C8A96E] mb-4 group-hover:w-24 transition-all duration-500" />
+    <p className="text-white/60 text-sm tracking-[0.3em] uppercase">28 Rue Lavoisier · Ronchin</p>
+  </motion.div>
+</a>
+
+{/* === STATS ANIMÉES === */}
+<section className="bg-[#080808] py-20 px-8 border-t border-[#C8A96E]/10">
   <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
     {[
-      { val: '4.9', label: 'Note Google', suffix: '/5' },
-      { val: '60', label: 'Avis Google', suffix: '+' },
-      { val: '5.0', label: 'Note Planity', suffix: '/5' },
-      { val: '128', label: 'Avis Planity', suffix: '+' },
+  { value: 4.9, suffix: '/5', label: 'NOTE GOOGLE' },
+{ value: 60, suffix: ' avis', label: 'AVIS GOOGLE' },
+{ value: 5.0, suffix: '/5', label: 'NOTE PLANITY' },
+{ value: 128, suffix: ' avis', label: 'AVIS PLANITY' },
     ].map((stat, i) => (
-      <div key={i} className="flex flex-col items-center gap-2">
-        <p className="text-[#C8A96E] font-light"
-          style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(36px, 5vw, 56px)" }}>
-          {stat.val}<span className="text-2xl">{stat.suffix}</span>
-        </p>
-        <p className="text-white/50 text-xs tracking-[3px] uppercase">{stat.label}</p>
-      </div>
+      <motion.div key={i}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: i * 0.15 }}
+        viewport={{ once: true }}>
+        <div className="text-4xl md:text-5xl font-light text-[#C8A96E] mb-3"
+          style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+          {stat.value}<span className="text-2xl">{stat.suffix}</span>
+        </div>
+        <p className="text-white/40 text-xs tracking-[0.4em]">{stat.label}</p>
+      </motion.div>
     ))}
   </div>
 </section>
-
-      {/* ═══ PHOTO PLEIN ÉCRAN ═══ */}
-      <section className="relative h-[70vh] overflow-hidden">
-        <img src="/salon-interieur.jpg" alt="Intérieur salon" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <RevealSection>
-            <div className="text-center px-8">
-              <p className="text-[#C8A96E] text-xs tracking-[6px] uppercase mb-6">Ronchin · Nord</p>
-              <h2 className="text-4xl md:text-6xl font-light text-white mb-8" style={{ fontFamily: "'Palatino Linotype', serif" }}>28 Rue Lavoisier</h2>
-              <p className="text-white/60 text-sm tracking-[2px] mb-10">Mar–Ven : 09:30–18:30 · Jeudi : 09:30–21:00 · Sam : 09:00–17:30</p>
-              <a href="tel:+33981402573" className="text-[#C8A96E] hover:text-white transition text-sm tracking-[3px]">+33 9 81 40 25 73</a>
-            </div>
-          </RevealSection>
-        </div>
-      </section>
-
-      {/* ═══ CTA FINAL ═══ */}
-      <section className="bg-[#080604] py-32 px-8 text-center">
-        <RevealSection>
-          <p className="text-[#C8A96E] text-xs tracking-[4px] uppercase mb-6">Votre transformation commence ici</p>
-          <h2 className="text-4xl md:text-6xl font-light text-white mb-10" style={{ fontFamily: "'Palatino Linotype', serif" }}>
-            Prête à vous redéfinir ?
-          </h2>
-          <a href="https://www.planity.com/fariale-sabeg-59790-ronchin" target="_blank" rel="noreferrer"
-            className="inline-block px-16 py-5 bg-[#C8A96E] text-black hover:bg-white transition-all duration-300 text-sm tracking-[4px] uppercase font-semibold">
-            Réserver Maintenant
-          </a>
-        </RevealSection>
-      </section>
-
 
   </main>
   );
