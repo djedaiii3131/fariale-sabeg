@@ -150,7 +150,7 @@ export default function Boutique() {
   ))}
   <img src={prod.image} alt={prod.nom} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', background: 'linear-gradient(135deg, #1a1208, #0d0b06)' }} />
 </motion.div>
-</div>
+</motion.div>
               </AnimatePresence>
 
               {/* Numéro */}
