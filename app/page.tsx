@@ -166,9 +166,9 @@ useEffect(() => {
  if (loading) {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden">
-      <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-        src="/intro2.mp4"
-      </video>
+    <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+  <source src="/intro2.mp4" type="video/mp4" />
+</video>
       <div className="absolute inset-0 bg-black/40" />
     
       {/* Texte animé */}
