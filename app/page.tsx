@@ -185,7 +185,9 @@ useEffect(() => {
             Entrer
           </span>
         </motion.button>
-}
+</div>
+    );
+  }
 
 
   if (activeSection !== 'home') {
