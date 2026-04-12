@@ -164,8 +164,13 @@ export default function Home() {
     }
   }, [loading]);
 
-  if (loif (loading) {
+ if (loading) {
   return (
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden">
+      <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+        <source src="/intro.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-black/40" />
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
       style={{ backgroundImage: "url('/bg-intro.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
       
