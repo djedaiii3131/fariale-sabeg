@@ -164,27 +164,50 @@ export default function Home() {
     }
   }, [loading]);
 
-  if (loading) {
-    return (
-      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden">
-        <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-          <source src="/intro.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/40" />
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showButton ? 1 : 0 }}
-          transition={{ duration: 0.6 }}
-          onClick={() => setLoading(false)}
-          disabled={!showButton}
-          className="relative z-10 px-12 py-3 border-2 border-[#8B6F5E] bg-[rgba(139,111,94,0.15)] text-[#F5EDE3] hover:bg-[#8B6F5E] hover:text-white transition-all duration-300 text-sm tracking-[5px] uppercase font-light disabled:cursor-not-allowed"
-          style={{ fontFamily: 'Cormorant Garamond, serif' }}
-        >
-          Entrer
-        </motion.button>
+  if (loif (loading) {
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
+      style={{ backgroundImage: "url('/bg-intro.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      
+      {/* Overlay sombre */}
+      <div className="absolute inset-0 bg-black/30" />
+
+      {/* Texte animé */}
+      <div className="relative z-10 flex flex-col items-center gap-4 mb-10">
+        <motion.h1
+          initial={{ opacity: 0, letterSpacing: '0.3em' }}
+          animate={{ opacity: 1, letterSpacing: '0.15em' }}
+          transition={{ duration: 1.8, ease: 'easeOut' }}
+          style={{ fontFamily: 'Cormorant Garamond, serif', color: '#F5EDE3' }}
+          className="text-5xl md:text-7xl font-light tracking-widest uppercase">
+          Fariale Sabeg
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5, delay: 0.8, ease: 'easeOut' }}
+          style={{ fontFamily: 'Cormorant Garamond, serif', color: '#C9A84C' }}
+          className="text-sm tracking-[0.4em] uppercase">
+          Salon de Coiffure
+        </motion.p>
       </div>
-    );
-  }
+
+      {/* Bouton Entrer */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showButton ? 1 : 0 }}
+        transition={{ duration: 0.6 }}
+        onClick={() => setLoading(false)}
+        disabled={!showButton}
+        className="relative z-10 px-12 py-3 border-2 border-[#8B6F5E] bg-[rgba(139,111,94,0.15)] text-[#F5EDE3] hover:bg-[#8B6F5E] hover:text-white tracking-widest text-xs uppercase transition-all duration-500"
+        style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+        Entrer
+      </motion.button>
+    </div>
+  );
+}
+
 
   if (activeSection !== 'home') {
     return (
