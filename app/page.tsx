@@ -157,7 +157,6 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
   const [activePrestation, setActivePrestation] = useState(0);
 
-  useEffect(() => {
     if (loading) {
       const timer = setTimeout(() => setShowButton(true), 4000);
       return () => clearTimeout(timer);
@@ -168,7 +167,7 @@ export default function Home() {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden">
       <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-        <source src="/intro.mp4" type="video/mp4" />
+        src="/intro2.mp4"
       </video>
       <div className="absolute inset-0 bg-black/40" />
     
