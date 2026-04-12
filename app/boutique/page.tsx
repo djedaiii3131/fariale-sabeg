@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 
 const categories = [
   {
@@ -51,13 +50,6 @@ const categories = [
   },
 ];
 
-const blobs = [
-  '60% 40% 70% 30% / 50% 60% 40% 50%',
-  '40% 60% 30% 70% / 60% 40% 50% 50%',
-  '70% 30% 50% 50% / 40% 60% 60% 40%',
-  '50% 50% 60% 40% / 70% 30% 40% 60%',
-];
-
 export default function Boutique() {
   const [activeCat, setActiveCat] = useState(0);
   const [activeProd, setActiveProd] = useState(0);
@@ -70,8 +62,7 @@ export default function Boutique() {
       {/* BANDEAU DÉFILANT */}
       <div className="absolute top-0 left-0 right-0 border-b border-[#C8A96E]/20 py-3 overflow-hidden z-10">
         <motion.div animate={{ x: ['0%', '-50%'] }} transition={{ duration: 25, repeat: Infinity, ease: 'linear' }} className="flex items-center gap-12 whitespace-nowrap" style={{ willChange: 'transform' }}>
- 
-         {[...Array(6)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <span key={i} className="flex items-center gap-12 text-[#C8A96E]/60 text-xs tracking-[0.35em] uppercase">
               COIFFURE FARIALE SABEG <span className="text-[#C8A96E]">✦</span>
             </span>
@@ -101,7 +92,6 @@ export default function Boutique() {
 
       {/* CATALOGUE */}
       <section className="min-h-screen">
-        {/* TABS */}
         <div className="flex justify-center border-y border-[#C8A96E]/20">
           {categories.map((c, i) => (
             <button key={i} onClick={() => { setActiveCat(i); setActiveProd(0); }}
@@ -117,11 +107,9 @@ export default function Boutique() {
             transition={{ duration: 0.5 }}
             className="grid md:grid-cols-2 min-h-screen">
 
-            {/* IMAGE BLOB FLOTTANTE */}
+            {/* IMAGE */}
             <div className="relative flex items-center justify-center bg-[#0a0a0a] overflow-hidden">
-              {/* Halo */}
               <div className="absolute w-80 h-80 rounded-full bg-[#C8A96E]/5 blur-3xl pointer-events-none" />
-
               <AnimatePresence mode="wait">
                 <motion.div key={prod.image}
                   initial={{ opacity: 0, scale: 0.85 }}
@@ -129,31 +117,28 @@ export default function Boutique() {
                   exit={{ opacity: 0, scale: 0.85 }}
                   transition={{ duration: 0.5 }}
                   className="relative"
-                  style={{ width: 320, height: 320 }}>
-
-   <motion.div
-  animate={{ y: [0, -10, 0] }}
-  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-  style={{ width: '100%', height: '100%', position: 'relative' }}
->
-  <motion.div
-    animate={{ opacity: [0.4, 1, 0.4] }}
-    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-    style={{
-      position: 'absolute', inset: -2,
-      border: '1px solid #C8A96E',
-      boxShadow: '0 0 20px rgba(200,169,110,0.3), inset 0 0 20px rgba(200,169,110,0.05)',
-    }}
-  />
-  {[['top-0 left-0', 'border-t border-l'],['top-0 right-0', 'border-t border-r'],['bottom-0 left-0', 'border-b border-l'],['bottom-0 right-0', 'border-b border-r']].map(([pos, border], i) => (
-    <div key={i} className={`absolute ${pos} w-6 h-6 border-[#C8A96E] ${border}`} />
-  ))}
-  <img src={prod.image} alt={prod.nom} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', background: 'linear-gradient(135deg, #1a1208, #0d0b06)' }} />
-</motion.div>
-</motion.div>
+                  style={{ width: 280, height: 380 }}>
+                  <motion.div
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                    style={{ width: '100%', height: '100%', position: 'relative' }}
+                  >
+                    <motion.div
+                      animate={{ opacity: [0.4, 1, 0.4] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                      style={{
+                        position: 'absolute', inset: -2,
+                        border: '1px solid #C8A96E',
+                        boxShadow: '0 0 20px rgba(200,169,110,0.3), inset 0 0 20px rgba(200,169,110,0.05)',
+                      }}
+                    />
+                    {[['top-0 left-0', 'border-t border-l'], ['top-0 right-0', 'border-t border-r'], ['bottom-0 left-0', 'border-b border-l'], ['bottom-0 right-0', 'border-b border-r']].map(([pos, border], i) => (
+                      <div key={i} className={`absolute ${pos} w-6 h-6 border-[#C8A96E] ${border}`} />
+                    ))}
+                    <img src={prod.image} alt={prod.nom} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', background: 'linear-gradient(135deg, #1a1208, #0d0b06)', padding: '16px' }} />
+                  </motion.div>
+                </motion.div>
               </AnimatePresence>
-
-              {/* Numéro */}
               <div className="absolute bottom-8 left-8 text-[#C8A96E]/15 text-8xl font-light select-none">
                 0{activeProd + 1}
               </div>
@@ -176,31 +161,25 @@ export default function Boutique() {
                 </motion.div>
               </AnimatePresence>
 
-{/* Navigation flèches */}
+              {/* Navigation flèches */}
               <div className="mt-12 flex items-center justify-between px-4">
                 <motion.button
                   onClick={() => setActiveProd(i => i > 0 ? i - 1 : cat.produits.length - 1)}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}
                   className="w-14 h-14 border border-[#C8A96E]/40 text-[#C8A96E] hover:bg-[#C8A96E]/10 transition-all duration-300 flex items-center justify-center text-xl"
-                >
-                  ←
-                </motion.button>
+                >←</motion.button>
                 <div className="flex gap-2">
                   {cat.produits.map((_, i) => (
                     <button key={i} onClick={() => setActiveProd(i)}
-                      className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeProd === i ? 'bg-[#C8A96E] w-6' : 'bg-[#C8A96E]/20'}`}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${activeProd === i ? 'bg-[#C8A96E] w-6' : 'bg-[#C8A96E]/20 w-1.5'}`}
                     />
                   ))}
                 </div>
                 <motion.button
                   onClick={() => setActiveProd(i => i < cat.produits.length - 1 ? i + 1 : 0)}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}
                   className="w-14 h-14 border border-[#C8A96E]/40 text-[#C8A96E] hover:bg-[#C8A96E]/10 transition-all duration-300 flex items-center justify-center text-xl"
-                >
-                  →
-                </motion.button>
+                >→</motion.button>
               </div>
             </div>
 
