@@ -131,19 +131,24 @@ export default function Boutique() {
                   className="relative"
                   style={{ width: 320, height: 320 }}>
 
-                 <motion.div
-  animate={{ y: [0, -16, 0] }}
-  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-  style={{
-    width: '100%', height: '100%',
-    overflow: 'hidden',
-    borderRadius: '60% 40% 55% 45% / 50% 60% 40% 50%',
-   background: 'linear-gradient(135deg, #2d1f0a, #1a1208)',
-    boxShadow: '0 0 60px rgba(200,169,110,0.1)',
-    position: 'relative',
-  }}>
-  <img src={prod.image} alt={prod.nom} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center top' }} />
-</motion.div>
+   <motion.div
+  animate={{ y: [0, -10, 0] }}
+  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+  style={{ width: '100%', height: '100%', position: 'relative' }}
+>
+  <motion.div
+    animate={{ opacity: [0.4, 1, 0.4] }}
+    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+    style={{
+      position: 'absolute', inset: -2,
+      border: '1px solid #C8A96E',
+      boxShadow: '0 0 20px rgba(200,169,110,0.3), inset 0 0 20px rgba(200,169,110,0.05)',
+    }}
+  />
+  {[['top-0 left-0', 'border-t border-l'],['top-0 right-0', 'border-t border-r'],['bottom-0 left-0', 'border-b border-l'],['bottom-0 right-0', 'border-b border-r']].map(([pos, border], i) => (
+    <div key={i} className={`absolute ${pos} w-6 h-6 border-[#C8A96E] ${border}`} />
+  ))}
+  <img src={prod.image} alt={prod.nom} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', background: 'linear-gradient(135deg, #1a1208, #0d0b06)' }} />
 </motion.div>
 
               </AnimatePresence>
