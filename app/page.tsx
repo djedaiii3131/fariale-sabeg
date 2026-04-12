@@ -171,39 +171,20 @@ useEffect(() => {
 </video>
       <div className="absolute inset-0 bg-black/40" />
     
-      {/* Texte animé */}
-      <div className="relative z-10 flex flex-col items-center gap-4 mb-10">
-        <motion.h1
-          initial={{ opacity: 0, letterSpacing: '0.3em' }}
-          animate={{ opacity: 1, letterSpacing: '0.15em' }}
-          transition={{ duration: 1.8, ease: 'easeOut' }}
-          style={{ fontFamily: 'Cormorant Garamond, serif', color: '#F5EDE3' }}
-          className="text-5xl md:text-7xl font-light tracking-widest uppercase">
-          Fariale Sabeg
-        </motion.h1>
-<motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, delay: 0.8, ease: 'easeOut' }}
-          style={{ fontFamily: 'Cormorant Garamond, serif', color: '#C9A84C' }}
-          className="text-sm tracking-[0.4em] uppercase">
-          Salon de Coiffure
-        </motion.p>
-      </div>
-
-      {/* Bouton Entrer */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showButton ? 1 : 0 }}
-        transition={{ duration: 0.6 }}
-        onClick={() => setLoading(false)}
-        disabled={!showButton}
-        className="relative z-10 px-12 py-3 border-2 border-[#8B6F5E] bg-[rgba(139,111,94,0.15)] text-[#F5EDE3] hover:bg-[#8B6F5E] hover:text-white tracking-widest text-xs uppercase transition-all duration-500"
-        style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-        Entrer
-      </motion.button>
-    </div>
-  );
+     {/* Bouton Entrer */}
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: showButton ? 1 : 0, y: showButton ? 0 : 20 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          onClick={() => setLoading(false)}
+          disabled={!showButton}
+          className="relative z-10 mt-80 group"
+          style={{ fontFamily: 'Cormorant Garamond, serif' }}
+        >
+          <span className="block px-14 py-4 border border-[#C9A84C] text-[#C9A84C] text-xs tracking-[0.4em] uppercase transition-all duration-500 group-hover:bg-[#C9A84C] group-hover:text-[#0a0804]">
+            Entrer
+          </span>
+        </motion.button>
 }
 
 
