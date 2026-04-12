@@ -182,8 +182,7 @@ export default function Home() {
           className="text-5xl md:text-7xl font-light tracking-widest uppercase">
           Fariale Sabeg
         </motion.h1>
-
-        <motion.
+<motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, delay: 0.8, ease: 'easeOut' }}
