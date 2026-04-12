@@ -138,7 +138,7 @@ export default function Boutique() {
     width: '100%', height: '100%',
     overflow: 'hidden',
     borderRadius: '60% 40% 55% 45% / 50% 60% 40% 50%',
-    background: 'linear-gradient(135deg, #1a1a1a, #111)',
+   background: 'linear-gradient(135deg, #2d1f0a, #1a1208)',
     boxShadow: '0 0 60px rgba(200,169,110,0.1)',
     position: 'relative',
   }}>
@@ -171,16 +171,25 @@ export default function Boutique() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Liste */}
-              <div className="mt-12 border-t border-[#C8A96E]/10 pt-8">
-                {cat.produits.map((p, i) => (
-                  <button key={i} onClick={() => setActiveProd(i)}
-                    className={`w-full text-left py-4 border-b border-[#C8A96E]/10 flex justify-between items-center transition-all duration-300 ${activeProd === i ? 'text-[#C8A96E]' : 'text-white/30 hover:text-white/70'}`}>
-                    <span className="text-sm tracking-[0.2em] uppercase">{p.nom}</span>
-                    <span className={`text-sm ${activeProd === i ? 'text-[#C8A96E]' : 'text-white/20'}`}>{p.prix}</span>
-                  </button>
-                ))}
-              </div>
+           {/* Liste */}
+<div className="mt-12 flex flex-col gap-4 px-4">
+  {cat.produits.map((p, i) => (
+    <motion.button
+      key={i}
+      onClick={() => setActiveProd(i)}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: i * 0.05 }}
+      className={`w-full text-left px-6 py-5 rounded-xl border transition-all duration-300 flex justify-between items-center
+        ${activeProd === i
+          ? 'border-[#C8A96E] bg-[#C8A96E]/10 shadow-lg shadow-[#C8A96E]/10'
+          : 'border-[#C8A96E]/10 bg-white/5 hover:border-[#C8A96E]/40'}`}
+    >
+      <span className="text-sm tracking-[0.2em] uppercase text-[#F5EDE3]">{p.nom}</span>
+      <span className={`text-sm ${activeProd === i ? 'text-[#C8A96E]' : 'text-white/20'}`}>{p.prix}</span>
+    </motion.button>
+  ))}
+</div>
             </div>
 
           </motion.div>
