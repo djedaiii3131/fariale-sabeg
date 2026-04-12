@@ -156,7 +156,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [activePrestation, setActivePrestation] = useState(0);
-
+useEffect(() => {
     if (loading) {
       const timer = setTimeout(() => setShowButton(true), 4000);
       return () => clearTimeout(timer);
