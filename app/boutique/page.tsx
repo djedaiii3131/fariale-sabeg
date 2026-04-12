@@ -107,43 +107,25 @@ export default function Boutique() {
             transition={{ duration: 0.5 }}
             className="grid md:grid-cols-2 min-h-screen">
 
-            {/* IMAGE */}
+       {/* IMAGE */}
             <div className="relative flex items-center justify-center bg-[#0a0a0a] overflow-hidden">
               <div className="absolute w-80 h-80 rounded-full bg-[#C8A96E]/5 blur-3xl pointer-events-none" />
               <AnimatePresence mode="wait">
                 <motion.div key={prod.image}
-                  initial={{ opacity: 0, scale: 0.85 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.85 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.5 }}
-                  className="relative"
-                  style={{ width: 280, height: 380 }}>
-                  <motion.div
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                    style={{ width: '100%', height: '100%', position: 'relative' }}
-                  >
-                    <motion.div
-                      animate={{ opacity: [0.4, 1, 0.4] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                      style={{
-                        position: 'absolute', inset: -2,
-                        border: '1px solid #C8A96E',
-                        boxShadow: '0 0 20px rgba(200,169,110,0.3), inset 0 0 20px rgba(200,169,110,0.05)',
-                      }}
-                    />
-                    {[['top-0 left-0', 'border-t border-l'], ['top-0 right-0', 'border-t border-r'], ['bottom-0 left-0', 'border-b border-l'], ['bottom-0 right-0', 'border-b border-r']].map(([pos, border], i) => (
-                      <div key={i} className={`absolute ${pos} w-6 h-6 border-[#C8A96E] ${border}`} />
-                    ))}
-                    <img src={prod.image} alt={prod.nom} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', background: 'linear-gradient(135deg, #1a1208, #0d0b06)', padding: '16px' }} />
-                  </motion.div>
+                  style={{ width: 300, height: 400, position: 'relative' }}>
+                  <img src={prod.image} alt={prod.nom} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} />
+                  {/* Fondu sur les bords */}
+                  <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, transparent 50%, #0a0a0a 100%)', pointerEvents: 'none' }} />
                 </motion.div>
               </AnimatePresence>
               <div className="absolute bottom-8 left-8 text-[#C8A96E]/15 text-8xl font-light select-none">
                 0{activeProd + 1}
               </div>
             </div>
-
             {/* INFOS */}
             <div className="flex flex-col justify-center px-12 py-16 bg-[#080808]">
               <AnimatePresence mode="wait">
