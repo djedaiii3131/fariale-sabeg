@@ -171,25 +171,32 @@ export default function Boutique() {
                 </motion.div>
               </AnimatePresence>
 
-           {/* Liste */}
-<div className="mt-12 flex flex-col gap-4 px-4">
-  {cat.produits.map((p, i) => (
-    <motion.button
-      key={i}
-      onClick={() => setActiveProd(i)}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: i * 0.05 }}
-      className={`w-full text-left px-6 py-5 rounded-xl border transition-all duration-300 flex justify-between items-center
-        ${activeProd === i
-          ? 'border-[#C8A96E] bg-[#C8A96E]/10 shadow-lg shadow-[#C8A96E]/10'
-          : 'border-[#C8A96E]/10 bg-white/5 hover:border-[#C8A96E]/40'}`}
-    >
-      <span className="text-sm tracking-[0.2em] uppercase text-[#F5EDE3]">{p.nom}</span>
-      <span className={`text-sm ${activeProd === i ? 'text-[#C8A96E]' : 'text-white/20'}`}>{p.prix}</span>
-    </motion.button>
-  ))}
-</div>
+{/* Navigation flèches */}
+              <div className="mt-12 flex items-center justify-between px-4">
+                <motion.button
+                  onClick={() => setActiveProd(i => i > 0 ? i - 1 : cat.produits.length - 1)}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-14 h-14 border border-[#C8A96E]/40 text-[#C8A96E] hover:bg-[#C8A96E]/10 transition-all duration-300 flex items-center justify-center text-xl"
+                >
+                  ←
+                </motion.button>
+                <div className="flex gap-2">
+                  {cat.produits.map((_, i) => (
+                    <button key={i} onClick={() => setActiveProd(i)}
+                      className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeProd === i ? 'bg-[#C8A96E] w-6' : 'bg-[#C8A96E]/20'}`}
+                    />
+                  ))}
+                </div>
+                <motion.button
+                  onClick={() => setActiveProd(i => i < cat.produits.length - 1 ? i + 1 : 0)}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-14 h-14 border border-[#C8A96E]/40 text-[#C8A96E] hover:bg-[#C8A96E]/10 transition-all duration-300 flex items-center justify-center text-xl"
+                >
+                  →
+                </motion.button>
+              </div>
             </div>
 
           </motion.div>
