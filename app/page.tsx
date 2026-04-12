@@ -417,7 +417,14 @@ useEffect(() => {
           ))}
          <h2 className="text-4xl md:text-6xl lg:text-7xl font-light text-[#F5EDE3] leading-tight mb-16" style={{ fontFamily: "'Palatino Linotype', serif" }}>
   L'art de révéler <br />
-  <span className="text-[#C8A96E] italic">ce que vous êtes</span>
+ <motion.span
+  className="text-[#C8A96E] block"
+  initial={{ opacity: 0, x: 80 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1.2, delay: 0.5, ease: 'easeOut' }}
+>
+  ce que vous êtes
+</motion.span>
 </h2>
          
           <div className="flex items-center justify-center gap-8 md:gap-16">
