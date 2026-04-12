@@ -171,12 +171,7 @@ export default function Home() {
         <source src="/intro.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-black/40" />
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
-      style={{ backgroundImage: "url('/bg-intro.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      
-      {/* Overlay sombre */}
-      <div className="absolute inset-0 bg-black/30" />
-
+    
       {/* Texte animé */}
       <div className="relative z-10 flex flex-col items-center gap-4 mb-10">
         <motion.h1
@@ -188,7 +183,7 @@ export default function Home() {
           Fariale Sabeg
         </motion.h1>
 
-        <motion.p
+        <motion.
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, delay: 0.8, ease: 'easeOut' }}
